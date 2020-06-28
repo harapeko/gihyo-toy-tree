@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-exports.read = (dir) => {
+exports.read = (dir, options) => {
   let stat;
 
   try {
@@ -17,13 +17,17 @@ exports.read = (dir) => {
   const root = {
     type: "directory",
     name: dir,
-    children: readDirectory(dir),
+    children: readDirectory(dir, 1, options),
   };
 
   return root;
 };
 
-const readDirectory = (dir) => {
+const readDirectory = (dir, depth, options) => {
+  if (options.level < depth) {
+    return [];
+  }
+
   const dirents = fs.readdirSync(dir, {
     // ディレクトリの内容を読み取るオプション
     withFileTypes: true,
@@ -43,7 +47,11 @@ const readDirectory = (dir) => {
       return {
         type: "directory",
         name: dirent.name,
-        children: readDirectory(path.join(dir, dirent.name)),
+        children: readDirectory(
+          path.join(dir, dirent.name),
+          depth + 1,
+          options
+        ),
       };
     }
   });
