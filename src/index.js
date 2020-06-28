@@ -30,6 +30,15 @@ exports.main = (argv, stdout, stderr) => {
 
   const dir = cli.input[0] || ".";
 
+  const options = {
+    level: cli.flags.level,
+  };
+
+  if (options.level < 1) {
+    stderr("Error: Invalid Level. 階層は0以上を指定してね");
+    return 1;
+  }
+
   let root;
 
   try {
