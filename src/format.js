@@ -1,3 +1,15 @@
+const chalk = require("chalk");
+
+// ディレクトリならシアン色にする
+const displayName = (node) => {
+  switch (node.type) {
+    case "file":
+      return node.name;
+    case "directory":
+      return chalk.cyan(node.name);
+  }
+};
+
 const formatEach = (nodes, prefix) => {
   let result = "";
 
