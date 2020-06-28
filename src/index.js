@@ -1,7 +1,10 @@
-const meow = require('meow');
+const meow = require("meow");
+const { read } = require("./read");
+const { format } = require("./format");
 
 exports.main = (argv, stdout, stderr) => {
-    const cli = meow(`
+  const cli = meow(
+    `
         Usage
             $ toy-tree <directory>
             
@@ -9,13 +12,25 @@ exports.main = (argv, stdout, stderr) => {
           $ toy-tree
           $ toy-tree path/to/dir
     `,
-        {
-            argv,
-        },
-    );
+    {
+      argv,
+    }
+  );
 
-    const dir = cli.input[0] || '.';
-    stdout(dir);
+  const dir = cli.input[0] || ".";
 
-    return 0;
-}
+  let root;
+
+  try {
+    root = read(dir);
+  } catch (e) {
+    stderr(`Error: ${e.message}`);
+    return 1;
+  }
+
+  const output = format(root);
+
+  stdout(output);
+
+  return 0;
+};
