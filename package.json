@@ -15,5 +15,8 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "meow": "^7.0.1"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0"
   }
 }
