@@ -8,11 +8,22 @@ exports.main = (argv, stdout, stderr) => {
         Usage
             $ toy-tree <directory>
             
+        Options
+          --level, -L ツリー表示ができる最大深さ
+
         Examples
           $ toy-tree
           $ toy-tree path/to/dir
     `,
     {
+      flags: {
+        // デフォルト：全階層を表示する
+        level: {
+          type: "number",
+          alias: "L",
+          default: Infinity,
+        },
+      },
       argv,
     }
   );
