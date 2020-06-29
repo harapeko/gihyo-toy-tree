@@ -17,6 +17,7 @@
     "meow": "^7.0.1"
   },
   "devDependencies": {
+    "@types/node": "^14.0.14",
     "jest": "^26.1.0",
     "typescript": "^3.9.5"
   },
