@@ -1,4 +1,4 @@
-const chalk = require("chalk");
+import chalk from "chalk";
 
 // ディレクトリならシアン色にする
 const displayName = (node) => {
@@ -28,7 +28,7 @@ const formatEach = (nodes, prefix) => {
   return result;
 };
 
-exports.format = (node, prefix) => {
+export const format = (node, prefix) => {
   let result = "";
 
   return `${node.name}\n${formatEach(node.children, "")}`;

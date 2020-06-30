@@ -1,11 +1,7 @@
 #!/usr/bin/env node
-const { main } = require('./');
+import { main } from "./";
 
-const code = main(
-    process.argv.slice(2),
-    console.log,
-    console.error,
-);
+const code = main(process.argv.slice(2), console.log, console.error);
 
 // 戻り値が終了コードになる
 process.exit(code);
