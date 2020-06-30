@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "bin": {
-    "toy-tree": "src/bin.js"
+    "toy-tree": "dist/bin.js"
   },
   "keywords": [],
   "author": "",
