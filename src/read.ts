@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { TODO_any } from "./types";
 
 const readDirectory = (dir, depth, options) => {
   if (options.level < depth) {
@@ -11,28 +12,30 @@ const readDirectory = (dir, depth, options) => {
     withFileTypes: true,
   });
 
-  return dirents.map((dirent) => {
-    if (dirent.name.startsWith(".")) {
-      return;
-    }
+  return dirents.map(
+    (dirent): TODO_any => {
+      if (dirent.name.startsWith(".")) {
+        return;
+      }
 
-    if (dirent.isFile()) {
-      return {
-        type: "file",
-        name: dirent.name,
-      };
-    } else if (dirent.isDirectory()) {
-      return {
-        type: "directory",
-        name: dirent.name,
-        children: readDirectory(
-          path.join(dir, dirent.name),
-          depth + 1,
-          options
-        ),
-      };
+      if (dirent.isFile()) {
+        return {
+          type: "file",
+          name: dirent.name,
+        };
+      } else if (dirent.isDirectory()) {
+        return {
+          type: "directory",
+          name: dirent.name,
+          children: readDirectory(
+            path.join(dir, dirent.name),
+            depth + 1,
+            options
+          ),
+        };
+      }
     }
-  });
+  );
 };
 
 export const read = (dir, options) => {
