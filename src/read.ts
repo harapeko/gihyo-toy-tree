@@ -1,28 +1,6 @@
 import fs from "fs";
 import path from "path";
 
-export const read = (dir, options) => {
-  let stat;
-
-  try {
-    stat = fs.statSync(dir);
-  } catch (e) {
-    throw new Error(`"${dir}" はないよ`);
-  }
-
-  if (!stat.isDirectory()) {
-    throw new Error(`"${dir}" はディレクトリじゃないよ`);
-  }
-
-  const root = {
-    type: "directory",
-    name: dir,
-    children: readDirectory(dir, 1, options),
-  };
-
-  return root;
-};
-
 const readDirectory = (dir, depth, options) => {
   if (options.level < depth) {
     return [];
@@ -55,4 +33,26 @@ const readDirectory = (dir, depth, options) => {
       };
     }
   });
+};
+
+export const read = (dir, options) => {
+  let stat;
+
+  try {
+    stat = fs.statSync(dir);
+  } catch (e) {
+    throw new Error(`"${dir}" はないよ`);
+  }
+
+  if (!stat.isDirectory()) {
+    throw new Error(`"${dir}" はディレクトリじゃないよ`);
+  }
+
+  const root = {
+    type: "directory",
+    name: dir,
+    children: readDirectory(dir, 1, options),
+  };
+
+  return root;
 };
