@@ -28,8 +28,6 @@ const formatEach = (nodes, prefix) => {
   return result;
 };
 
-export const format = (node, prefix) => {
-  let result = "";
-
+export const format = (node) => {
   return `${node.name}\n${formatEach(node.children, "")}`;
 };
