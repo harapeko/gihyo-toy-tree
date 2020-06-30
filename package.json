@@ -14,12 +14,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/jest": "^26.0.3",
-    "D": "^1.0.0",
     "chalk": "^4.1.0",
     "meow": "^7.0.1"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.3",
     "@types/node": "^14.0.14",
     "jest": "^26.1.0",
     "ts-jest": "^26.1.1",
@@ -27,7 +26,11 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "modulePathIgnorePatterns": ["<rootDir>/dist"],
-    "setupFiles": ["./jest.setup.js"]
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist"
+    ],
+    "setupFiles": [
+      "./jest.setup.js"
+    ]
   }
 }
